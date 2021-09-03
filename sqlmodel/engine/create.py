@@ -2,7 +2,7 @@ import json
 import sqlite3
 from typing import Any, Callable, Dict, List, Optional, Type, Union
 
-from sqlalchemy.ext.asyncio import create_async_engine as create_async_engine
+from sqlalchemy.ext.asyncio import create_async_engine as _create_async_engine
 from sqlalchemy.engine.url import URL
 from sqlalchemy.future import Engine as _FutureEngine
 from sqlalchemy.pool import Pool
