@@ -2,7 +2,7 @@ import json
 import sqlite3
 from typing import Any, Callable, Dict, List, Optional, Type, Union
 
-from sqlalchemy import create_engine as _create_engine
+from sqlalchemy.ext.asyncio import create_async_engine as create_async_engine
 from sqlalchemy.engine.url import URL
 from sqlalchemy.future import Engine as _FutureEngine
 from sqlalchemy.pool import Pool
@@ -42,7 +42,7 @@ _ConnectArgs = Union[_SQLiteConnectArgs, Dict[str, Any]]
 # Also show the default values used for each parameter, but don't set them unless
 # explicitly passed as arguments by the user to prevent errors. E.g. SQLite doesn't
 # support pool connection arguments.
-def create_engine(
+def create_async_engine(
     url: Union[str, URL],
     *,
     connect_args: _ConnectArgs = Default({}),  # type: ignore
@@ -136,4 +136,4 @@ def create_engine(
     if not isinstance(query_cache_size, _DefaultPlaceholder):
         current_kwargs["query_cache_size"] = query_cache_size
     current_kwargs.update(kwargs)
-    return _create_engine(url, **current_kwargs)
+    return _create_async_engine(url, **current_kwargs)
